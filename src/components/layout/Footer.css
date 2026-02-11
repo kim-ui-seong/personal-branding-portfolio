@@ -79,7 +79,7 @@
 .footer-character {
     position: absolute;
     left: 40px;
-    bottom: -110px;
+    bottom: 0;
     width: 340px;
     height: 220px;
 }
@@ -93,7 +93,7 @@
 .footer-character .character-closed {
     position: absolute;
     left: 0;
-    bottom: -92px;
+    bottom: -105px;
 }
 
 .footer-character .character-closed {
@@ -191,6 +191,63 @@
     transform: scale(1.08);
 }
 
+
+
+@media (max-width: 1700px) and (min-width: 769px) {
+    .footer {
+        padding: clamp(110px, 8vw, 150px) 0 clamp(60px, 5vw, 80px);
+    }
+
+    .footer-frame {
+        width: 100%;
+        padding: 0 clamp(24px, 3.5vw, 40px);
+    }
+
+    .footer-card {
+        width: 100%;
+        max-width: 1700px;
+        min-height: clamp(520px, 41vw, 700px);
+        height: auto;
+        padding: clamp(50px, 4.7vw, 80px) clamp(42px, 4.2vw, 70px) clamp(40px, 4vw, 70px);
+    }
+
+    .footer-title {
+        font-size: clamp(64px, 5.2vw, 90px);
+    }
+
+    .footer-contacts {
+        left: clamp(280px, 25vw, 520px);
+        top: clamp(20px, 2.3vw, 40px);
+    }
+
+    .footer-contacts p {
+        font-size: clamp(22px, 1.8vw, 30px);
+    }
+
+    .handwritten .tell {
+        font-size: clamp(44px, 3.5vw, 60px);
+    }
+
+    .footer-character {
+        left: clamp(12px, 2.3vw, 40px);
+        width: clamp(220px, 20vw, 340px);
+        height: clamp(140px, 13vw, 220px);
+    }
+
+    .footer-character img {
+        width: 100%;
+    }
+
+    .footer-character .character-open,
+    .footer-character .character-closed {
+        bottom: -112px;
+    }
+
+    .footer-copy {
+        font-size: clamp(12px, 1vw, 16px);
+    }
+}
+
 @media (max-width: 768px) {
     .footer {
         padding: 100px 0 80px;
@@ -252,10 +309,16 @@
         width: 180px;
     }
 
+    .footer-character .character-open,
+    .footer-character .character-closed {
+        bottom: -92px;
+    }
+
     .footer-bottom {
         justify-content: flex-start;
         flex-wrap: wrap;
     }
+    
 
     .footer-icon {
         width: 42px;

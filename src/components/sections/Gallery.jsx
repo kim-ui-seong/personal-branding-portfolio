@@ -48,7 +48,7 @@ const Gallery = () => {
             const width = window.innerWidth || 1920;
             const height = window.innerHeight || 1080;
             setViewportHeight(height);
-            const scale = width / 1920;
+            const scale = Math.min(width / 1920, 1);
             document.documentElement.style.setProperty('--gallery-scale', scale.toString());
         };
         handleResize();
@@ -142,10 +142,16 @@ const Gallery = () => {
             <div
                 className="gallery-scale-wrapper"
                 style={{
-                    transform: `translate(-50%, 0) scale(var(--gallery-scale, 1))`,
+                    transform: 'translateX(-50%)',
                     height: `${viewportHeight}px`
                 }}
             >
+                <div
+                    className="gallery-scale-content"
+                    style={{
+                        transform: 'scale(var(--gallery-scale, 1))'
+                    }}
+                >
                     <div className="gallery-frame">
                         <h2 className="gallery-title">YEAH, THAT&apos;S ME!</h2>
                     <div
@@ -164,6 +170,7 @@ const Gallery = () => {
                             />
                         ))}
                     </div>
+                </div>
                 </div>
             </div>
         </section>

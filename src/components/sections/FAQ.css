@@ -143,6 +143,40 @@
     object-fit: contain;
 }
 
+@media (max-width: 1700px) and (min-width: 769px) {
+    .faq-section {
+        padding: clamp(110px, 8vw, 140px) 0 clamp(140px, 10vw, 180px);
+    }
+
+    .faq-frame {
+        width: 100%;
+        max-width: 1920px;
+        padding: 0 clamp(40px, 7vw, 140px);
+    }
+
+    .faq-title {
+        font-size: clamp(64px, 7vw, 140px);
+        letter-spacing: 1px;
+    }
+
+    .faq-subtitle {
+        font-size: clamp(15px, 1.3vw, 18px);
+    }
+
+    .faq-subnote {
+        font-size: clamp(10px, 0.85vw, 12px);
+        margin-bottom: clamp(44px, 4vw, 80px);
+    }
+
+    .question {
+        font-size: clamp(18px, 1.35vw, 20px);
+    }
+
+    .answer {
+        font-size: clamp(14px, 1vw, 16px);
+    }
+}
+
 @media (max-width: 768px) {
     .faq-section {
         padding: 100px 0 120px;

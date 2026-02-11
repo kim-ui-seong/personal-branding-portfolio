@@ -23,6 +23,11 @@ html[data-projects-mask="on"] .gallery-section {
     left: 50%;
     width: 1920px;
     min-height: 1400px;
+}
+
+.gallery-scale-content {
+    width: 1920px;
+    min-height: 1400px;
     transform-origin: top center;
 }
 
@@ -90,14 +95,88 @@ html[data-projects-mask="on"] .gallery-section {
 .hobby-10 { left: 1440px; top: 790px; width: 270px; height: 200px; }
 .hobby-11 { left: 900px; top: 840px; width: 190px; height: 150px; }
 
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .gallery-section {
+        min-height: 1100px;
+        padding: 140px 0;
+    }
+
+    .gallery-frame {
+        min-height: 1100px;
+    }
+
+    .gallery-title {
+        top: 430px;
+        font-size: clamp(64px, 5.2vw, 78px);
+    }
+
+    .hobby-01 { left: 100px; top: 150px; width: 150px; height: 115px; }
+    .hobby-02 { left: 250px; top: 205px; width: 230px; height: 185px; }
+    .hobby-03 { left: 70px; top: 370px; width: 170px; height: 125px; }
+    .hobby-04 { left: 120px; top: 560px; width: 205px; height: 150px; }
+    .hobby-05 { left: 290px; top: 630px; width: 205px; height: 195px; }
+    .hobby-06 { left: 1090px; top: 170px; width: 230px; height: 175px; }
+    .hobby-07 { left: 1270px; top: 265px; width: 150px; height: 175px; }
+    .hobby-08 { left: 1135px; top: 430px; width: 185px; height: 140px; }
+    .hobby-09 { left: 1380px; top: 530px; width: 205px; height: 175px; }
+    .hobby-10 { left: 1210px; top: 660px; width: 240px; height: 175px; }
+    .hobby-11 { left: 800px; top: 690px; width: 170px; height: 130px; }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .gallery-section {
+        min-height: 980px;
+        padding: 120px 0 130px;
+    }
+
+    .gallery-frame {
+        min-height: 980px;
+    }
+
+    .gallery-title {
+        top: 370px;
+        font-size: clamp(52px, 6vw, 66px);
+    }
+
+    .hobby-01 { left: 90px; top: 130px; width: 130px; height: 100px; }
+    .hobby-02 { left: 220px; top: 180px; width: 190px; height: 150px; }
+    .hobby-03 { left: 70px; top: 315px; width: 145px; height: 105px; }
+    .hobby-04 { left: 100px; top: 470px; width: 170px; height: 125px; }
+    .hobby-05 { left: 245px; top: 530px; width: 170px; height: 160px; }
+    .hobby-06 { left: 820px; top: 145px; width: 190px; height: 145px; }
+    .hobby-07 { left: 965px; top: 230px; width: 125px; height: 150px; }
+    .hobby-08 { left: 860px; top: 360px; width: 155px; height: 115px; }
+    .hobby-09 { left: 1045px; top: 450px; width: 170px; height: 145px; }
+    .hobby-10 { left: 905px; top: 560px; width: 200px; height: 145px; }
+    .hobby-11 { left: 620px; top: 590px; width: 145px; height: 110px; }
+}
+
+@media (max-width: 1700px) and (min-width: 1441px) {
+    .gallery-section {
+        padding: 150px 0;
+    }
+
+    .gallery-title {
+        font-size: clamp(72px, 5.2vw, 86px);
+    }
+}
+
 @media (max-width: 768px) {
     .gallery-section {
         padding: 120px 0 140px;
+        overflow: visible;
     }
 
     .gallery-scale-wrapper {
         left: auto !important;
         width: 100%;
+        transform: none !important;
+        height: auto !important;
+    }
+
+    .gallery-scale-content {
+        width: 100%;
+        min-height: auto;
         transform: none !important;
     }
 
@@ -206,9 +285,12 @@ html[data-projects-mask="on"] .gallery-section {
 
     .gallery-photos {
         grid-template-columns: 1fr;
+        grid-auto-rows: auto;
     }
 
     .gallery-photo {
         height: 160px;
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
     }
 }

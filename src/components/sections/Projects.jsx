@@ -200,12 +200,12 @@ const Projects = () => {
     ];
 
     const cloneData = [
-        { id: '01', name: 'CREW A LA MODE', mini: mini1, main: main1, hover: hover1, url: '#' },
-        { id: '02', name: 'MUSIGN', mini: mini2, main: main2, hover: hover2, url: '#' },
-        { id: '03', name: 'DAEBANG', mini: mini3, main: main3, hover: hover3, url: '#' },
-        { id: '04', name: 'YSTUDIO', mini: mini4, main: main4, hover: hover4, url: '#' },
-        { id: '05', name: 'PHOMEIN', mini: mini5, main: main5, hover: hover5, url: '#' },
-        { id: '06', name: 'CONCIERGE', mini: mini6, main: main6, hover: hover6, url: '#' },
+        { id: '01', name: 'CREW A LA MODE', mini: mini1, main: main1, hover: hover1, url: 'https://clone-coding4.vercel.app/' },
+        { id: '02', name: 'MUSIGN', mini: mini2, main: main2, hover: hover2, url: 'https://clone-coding-five.vercel.app/' },
+        { id: '03', name: 'DAEBANG', mini: mini3, main: main3, hover: hover3, url: 'https://clone-coding4-ohfg.vercel.app/' },
+        { id: '04', name: 'YSTUDIO', mini: mini4, main: main4, hover: hover4, url: 'https://clone-coding2.vercel.app/' },
+        { id: '05', name: 'PHOMEIN', mini: mini5, main: main5, hover: hover5, url: 'https://clone-coding6.vercel.app/' },
+        { id: '06', name: 'CONCIERGE', mini: mini6, main: main6, hover: hover6, url: 'https://clone-coding2-km7v.vercel.app/' },
     ];
 
     const currentCloneItem = cloneData[selectedIndex];
