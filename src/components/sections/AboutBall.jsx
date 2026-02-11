@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './AboutBall.css';
+import ballGirl from '../../assets/ball-girl.png';
 
 const AboutBall = () => {
     const sectionRef = useRef(null);
@@ -66,7 +67,7 @@ const AboutBall = () => {
         };
 
         const section = sectionRef.current;
-        if (!section) return () => {};
+        if (!section) return () => { };
         section.addEventListener('mousemove', handleMove);
         section.addEventListener('mouseleave', handleLeave);
 
@@ -124,14 +125,16 @@ const AboutBall = () => {
                                     style={{
                                         width: `${ball.size}px`,
                                         height: `${ball.size}px`,
-                                    left: ball.pinnedLeft || ball.left,
-                                    right: ball.pinnedLeft ? undefined : ball.right,
+                                        left: ball.pinnedLeft || ball.left,
+                                        right: ball.pinnedLeft ? undefined : ball.right,
                                         top: ball.top,
                                         opacity: ball.opacity,
                                         animationDuration: ball.speed,
                                         '--float-range': ball.range
                                     }}
-                                />
+                                >
+                                    {idx === 6 && <img src={ballGirl} className="ball-girl-img" alt="Ball Girl" />}
+                                </div>
                             );
                         })}
                     </div>
