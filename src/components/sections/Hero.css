@@ -1,0 +1,574 @@
+/* Hero.css - Absolute Positioning System (1920x1930 Frame) */
+
+.hero-section {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow-x: hidden;
+    background: #F3F3E9;
+    /* Exactly restored original height: 1930px */
+    height: calc(1930px * var(--hero-scale, 1));
+}
+
+.hero-scale-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0 auto;
+}
+
+.hero-content {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1920px;
+    height: 1930px;
+    /* Exactly restored from original */
+    transform-origin: top center;
+    /* Use the JS-calculated variable for stability */
+    transform: translateX(-50%) scale(var(--hero-scale, 1));
+}
+
+/* Scaling cap for ultra-wide screens */
+@media (min-width: 1921px) {
+    .hero-section {
+        height: 1930px;
+        /* Fixed height for large screens */
+    }
+}
+
+
+.hero-element {
+    position: absolute;
+}
+
+.hero-bg-bottom {
+    position: absolute;
+    bottom: -5px;
+    /* Deeper overlap to hide gaps */
+    left: 50%;
+    width: 5000px;
+    /* Extremely wide to ensure no side gaps ever appear */
+    height: 850px;
+    /* Restored height to match original proportionality */
+    background-color: #F4CED3;
+    transform: translateX(-50%);
+    z-index: 0;
+    /* Ensures it stays behind character/bubbles */
+}
+
+/* --- ANIMATIONS --- */
+
+.left-title,
+.right-title,
+.hero-subtitle {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
+        transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.reveal .left-title,
+.reveal .right-title,
+.reveal .hero-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sequential Delays */
+.reveal .left-title {
+    transition-delay: 0.1s;
+}
+
+.reveal .right-title {
+    transition-delay: 0.3s;
+}
+
+.reveal .hero-subtitle {
+    transition-delay: 0.5s;
+}
+
+/* Leaning S Animation */
+.leaning-letter {
+    display: inline-block;
+    transform-origin: bottom left;
+}
+
+.reveal .leaning-letter {
+    animation: lean-left 0.1s ease-out forwards;
+    animation-delay: 1.15s;
+    /* Starts after text slide-up */
+}
+
+@keyframes lean-left {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-12deg);
+    }
+}
+
+.big-text {
+    font-family: var(--font-title);
+    font-size: 180px;
+    /* Reduced from 250px */
+    line-height: 0.85;
+    letter-spacing: -2px;
+}
+
+.left-title {
+    left: 60px;
+    top: 165px;
+    color: #E33529;
+    font-family: var(--font-title);
+    font-size: 230px;
+    /* Reduced from 230px */
+    line-height: 0.85;
+    text-align: left;
+    z-index: 10;
+    letter-spacing: -2px;
+}
+
+.right-title {
+    right: 60px;
+    top: 550px;
+    /* Restored to original spacing position */
+    color: #E33529;
+    font-family: var(--font-title);
+    font-size: 140px;
+    line-height: 0.85;
+    text-align: right;
+    z-index: 10;
+}
+
+
+.hero-subtitle {
+    right: 60px;
+    top: 780px;
+    /* Back to original spacing */
+    font-size: 22px;
+    font-weight: 500;
+    color: #E33529;
+    z-index: 10;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.hero-social-icons {
+    left: 60px;
+    top: 800px;
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
+
+.social-icon {
+    width: 60px;
+    height: 60px;
+    background: #E33529;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: none;
+    padding: 0;
+}
+
+.social-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+
+/* Character & Center Bubble Group (Floating together) */
+.float-group-center {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 15;
+    /* At the very front */
+    animation: floating-group 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hero-character {
+    position: absolute;
+    /* Relative to float-group-center */
+    left: 448px;
+    top: 160px;
+    /* Moved up by another 10px (170 - 10) */
+    width: 730px;
+    height: 1100px;
+    object-fit: contain;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.bubble-center {
+    left: 410px;
+    top: 880px;
+    /* Moved up by another 10px (890 - 10) */
+    width: 800px;
+    height: 800px;
+    background-color: #F9F9F2;
+    z-index: 3;
+}
+
+/* --- BUBBLES & FLOATING --- */
+
+@keyframes floating-bubble-1 {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-50px);
+    }
+}
+
+@keyframes floating-bubble-2 {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-40px);
+    }
+}
+
+@keyframes floating-bubble-3 {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-45px);
+    }
+}
+
+@keyframes floating-group {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+.scroll-indicator {
+    color: #E33529;
+    font-weight: 800;
+    font-size: 28px;
+    /* Slightly smaller for 'SCROLL DOWN' only */
+    z-index: 20;
+    pointer-events: none;
+    text-align: center;
+    line-height: 1.2;
+    margin-top: 200px;
+    /* Push it down as requested */
+}
+
+.bg-bubble {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.bubble-left {
+    left: -147px;
+    top: 630px;
+    /* Moved up by another 10px (640 - 10) */
+    width: 745px;
+    height: 745px;
+    background-color: #FCFCF7;
+    z-index: 3;
+    animation: floating-bubble-1 4s ease-in-out infinite;
+}
+
+.bubble-right-top {
+    left: 965px;
+    top: 540px;
+    /* Moved up by another 10px (550 - 10) */
+    width: 800px;
+    height: 800px;
+    background-color: #FCFCF7;
+    z-index: 2;
+    animation: floating-bubble-2 5s ease-in-out infinite 0.5s;
+}
+
+.bubble-right-bottom {
+    left: 1490px;
+    top: 900px;
+    /* Moved up by another 10px (910 - 10) */
+    width: 800px;
+    height: 800px;
+    background-color: #F9F9F2;
+    z-index: 2;
+    animation: floating-bubble-3 4.5s ease-in-out infinite 1s;
+}
+
+.bubble-pink-scroll {
+    left: 1070px;
+    top: 1030px;
+    /* Moved up by another 10px (1040 - 10) */
+    width: 550px;
+    height: 550px;
+    background-color: #F0B5BE;
+    border-radius: 50%;
+    z-index: 1;
+    /* Behind other bubbles (2, 3) but in front of bg (0) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background-color 0.3s ease;
+    animation: none !important;
+}
+
+.bubble-pink-scroll.interactable {
+    cursor: pointer;
+}
+
+.bubble-pink-scroll.interactable:hover {
+    transform: scale(1.02);
+    background-color: #eea9b4;
+}
+
+
+
+
+
+@media (max-width: 1024px) {
+    .social-icon,
+    .social-icon img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .scroll-indicator {
+        font-size: 24px;
+        margin-top: 160px;
+    }
+}
+
+@media (max-width: 900px) {
+    .left-title {
+        top: 210px;
+        font-size: 200px;
+    }
+
+    .right-title {
+        top: 520px;
+        font-size: 120px;
+    }
+
+    .hero-subtitle {
+        top: 720px;
+        font-size: 18px;
+    }
+
+    .hero-social-icons {
+        top: 760px;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        padding-top: var(--header-height);
+        overflow-x: hidden;
+        overflow-y: visible;
+        max-width: 100vw;
+    }
+
+    .hero-scale-wrapper {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: visible;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    .hero-bg-bottom {
+        left: 0;
+        width: 100%;
+        height: 45vh;
+        bottom: 0;
+        transform: none;
+    }
+
+    .hero-bg-bottom {
+        left: 0;
+        width: 100%;
+        height: 45vh;
+        bottom: 0;
+        transform: none;
+    }
+
+    .hero-content {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        left: auto;
+        right: auto;
+        top: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: var(--space-4) var(--container-pad) 100px;
+        margin: 0 auto;
+        text-align: center;
+        overflow-y: visible;
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+
+    .hero-bg-bottom {
+        left: 0;
+        width: 100%;
+        height: 55vh;
+        bottom: 0;
+        transform: none;
+    }
+
+    .hero-element {
+        position: relative;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none;
+        margin-bottom: var(--space-2);
+        width: 100%;
+    }
+
+    .hero-element img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .left-title,
+    .right-title {
+        text-align: center;
+        width: 100%;
+        font-size: 64px;
+        line-height: 0.9;
+        opacity: 1;
+        transform: none;
+    }
+
+    .hero-subtitle {
+        text-align: center;
+        white-space: normal;
+        font-size: var(--fs-subtitle);
+        margin-bottom: var(--space-4);
+        opacity: 1;
+        transform: none;
+    }
+
+    .social-icon,
+    .social-icon img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .hero-character {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 240px;
+        height: auto;
+        order: 2;
+        margin-top: -10px;
+    }
+
+    .float-group-center {
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-top: -6px;
+    }
+
+    .bg-bubble {
+        display: none;
+    }
+
+    .hero-social-icons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .bubble-pink-scroll {
+        display: none;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    .bubble-center {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translateX(-50%) scale(0.6);
+        opacity: 0.25;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 390px) {
+    .hero-content {
+        padding: var(--space-4) var(--container-pad) 80px;
+    }
+
+    .left-title,
+    .right-title {
+        font-size: 52px;
+        letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-social-icons {
+        gap: 10px;
+    }
+
+    .social-icon,
+    .social-icon img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .scroll-indicator {
+        font-size: 20px;
+        margin-top: 120px;
+    }
+}

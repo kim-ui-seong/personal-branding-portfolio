@@ -1,0 +1,371 @@
+.aboutme-section {
+  position: relative;
+  width: 100%;
+  /* Compressed scroll for better pacing: 5000px */
+  height: calc(5000px * var(--aboutme-scale, 1));
+  background-color: #f4ced3;
+  z-index: 2;
+  /* Naturally follows about section */
+  overflow: visible;
+  /* CRITICAL: Must be visible for sticky to work! */
+}
+
+.aboutme-sticky-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #f4ced3;
+  /* Solid cover */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.aboutme-scale-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1100px;
+  /* Further refined for tighter vertical look */
+  transform-origin: center center;
+  transform: translate(-50%, -50%) scale(var(--aboutme-scale, 1));
+}
+
+.aboutme-intro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* EXACT CENTER */
+  width: 100%;
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.aboutme-title {
+  font-family: var(--font-title);
+  font-size: 180px;
+  color: #e33529;
+  line-height: 1;
+  letter-spacing: -2px;
+
+  /* Animation base */
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.aboutme-intro.reveal .aboutme-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background Decoration Circles */
+.aboutme-bg-circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.aboutme-circle {
+  position: absolute;
+  background-color: #f9f9f2;
+  /* Requested Ball Color */
+  border-radius: 50%;
+  opacity: 0.5;
+  /* 50% opacity */
+  animation: aboutme-float 6s ease-in-out infinite;
+}
+
+.circle-1 {
+  width: 250px;
+  height: 250px;
+  left: 40px;
+  top: 180px;
+  animation-duration: 7s;
+}
+
+.circle-2 {
+  width: 140px;
+  height: 140px;
+  right: 50px;
+  top: 320px;
+  animation-duration: 6s;
+  animation-delay: -1s;
+}
+
+.circle-3 {
+  width: 70px;
+  height: 70px;
+  right: 320px;
+  top: 200px;
+  /* Moved above cards */
+  animation-duration: 5.5s;
+  animation-delay: -2s;
+}
+
+@keyframes aboutme-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+.aboutme-cards-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.aboutme-card {
+  position: absolute;
+  width: 500px;
+  height: 680px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  transition:
+    transform 0.25s cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 0.05s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transform-origin: center;
+  overflow: hidden;
+  /* PREVENT LEAKING: Keeps all content inside the card */
+}
+
+.card-top {
+  margin-bottom: 25px;
+}
+
+.aboutme-card .card-title {
+  font-family: var(--font-title);
+  font-size: 80px;
+  color: #e33529;
+  line-height: 0.9;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 400;
+}
+
+.card-num {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 80px;
+  color: #e33529;
+  margin-bottom: 30px;
+}
+
+.card-text {
+  font-family: var(--font-main);
+  font-size: 21px;
+  color: #e33529;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 30px;
+  /* Slightly more space for the image area */
+}
+
+.card-img-box {
+  width: 100%;
+  height: 320px;
+  /* Dedicated area for image + pop-out */
+  position: relative;
+  margin-top: auto;
+  /* Push to bottom of card padding */
+}
+
+.card-img-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  /* The small colored box base */
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.card-img-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Full box height (320px) to allow overflow (320 > 220) */
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.card-img {
+  width: 90%;
+  height: 100%;
+  /* Fills the 320px box, popping out of the 220px bg */
+  object-fit: contain;
+  /* Clean, no ad-hoc translates for standard images */
+}
+
+/* Individual Sizing & Positioning */
+
+/* 01. Introduction (Character) */
+.aboutme-card:nth-child(1) .card-img {
+  width: 100%;
+  height: 120%;
+  /* Extra pop for character */
+  transform: translateY(11px);
+}
+
+/* 02. Started (Airplane) */
+.aboutme-card:nth-child(2) .card-img {
+  width: 90%;
+  height: 130%;
+}
+
+/* 03. Puzzle - Scale down as requested */
+.aboutme-card:nth-child(3) .card-img {
+  width: 115%;
+  height: 115%;
+  margin-bottom: 10px;
+  /* Center it more in the pink area */
+}
+
+/* 04. Monitor - Scale down as requested */
+.aboutme-card:nth-child(4) .card-img {
+  width: 110%;
+  height: 115%;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .aboutme-section {
+    height: auto;
+    overflow: visible;
+    padding: var(--space-6) 0 var(--space-6);
+  }
+
+  .aboutme-sticky-container {
+    position: relative;
+    height: auto;
+    padding: 0 var(--container-pad);
+    overflow: visible;
+  }
+
+  .aboutme-scale-wrapper {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    transform: none;
+  }
+
+  .aboutme-intro {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-bottom: var(--space-6);
+  }
+
+  .aboutme-title {
+    font-size: 64px;
+  }
+
+  .aboutme-bg-circles {
+    display: none;
+  }
+
+  .aboutme-cards-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .aboutme-card {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    padding: 24px;
+    margin: 0 auto;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  .aboutme-card .card-title {
+    font-size: 44px;
+  }
+
+  .card-num {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .card-text {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .card-img-box {
+    height: 220px;
+  }
+
+  .card-img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .aboutme-title {
+    font-size: 48px;
+  }
+
+  .aboutme-card {
+    max-width: 320px;
+    padding: 20px;
+  }
+
+  .aboutme-card .card-title {
+    font-size: 36px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .card-img-box {
+    height: 200px;
+  }
+}

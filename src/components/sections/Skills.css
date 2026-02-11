@@ -1,0 +1,236 @@
+.skills-section {
+    position: relative;
+    width: 100%;
+    /* Compressed scroll for better pacing: 3500px */
+    height: calc(3500px * var(--skills-scale, 1));
+    background-color: #F4CED3;
+    overflow: visible;
+    z-index: 5;
+}
+
+.skills-sticky-container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.skills-scale-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Fill viewport width regardless of scale to prevent clipping */
+    width: calc(100vw / var(--skills-scale, 1));
+    height: 1300px;
+    /* Expanded for physical breathing room */
+    transform-origin: center center;
+    transform: translate(-50%, -50%) scale(var(--skills-scale, 1));
+}
+
+.skills-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- TITLE --- */
+.skills-title {
+    font-family: var(--font-title);
+    font-size: 180px;
+    color: #E33529;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
+        transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.skills-content.reveal .skills-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+/* --- MARQUEE --- */
+.marquee-container {
+    width: 100%;
+    overflow: visible;
+    /* Allow icons to be visible as they enter/exit */
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 40px 0;
+}
+
+.marquee-row {
+    display: flex;
+    width: 100%;
+}
+
+.marquee-row.row-2 {
+    margin-top: 20px;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 30px;
+    animation: marquee-scroll 40s linear infinite;
+}
+
+.marquee-track-reverse {
+    display: flex;
+    gap: 30px;
+    animation: marquee-scroll-reverse 40s linear infinite;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-1890px);
+    }
+}
+
+@keyframes marquee-scroll-reverse {
+    0% {
+        transform: translateX(-1890px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* --- SKILL BOX --- */
+.skill-box {
+    width: 180px;
+    height: 180px;
+    background-color: #F0B5BE;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.skill-box img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    filter: none;
+}
+
+/* --- DECORATION --- */
+.skills-bg-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.skills-circle {
+    position: absolute;
+    background-color: #F9F9F2;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: skills-float 6.5s ease-in-out infinite;
+}
+
+.sc-1 {
+    width: 300px;
+    height: 300px;
+    left: -100px;
+    top: 40%;
+    animation-duration: 7s;
+}
+
+.sc-2 {
+    width: 150px;
+    height: 150px;
+    right: 10%;
+    top: 20%;
+    animation-duration: 6s;
+    animation-delay: -1.5s;
+}
+
+@keyframes skills-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-section {
+        height: auto;
+        padding: var(--space-6) 0;
+    }
+
+    .skills-sticky-container {
+        position: relative;
+        height: auto;
+        overflow: visible;
+    }
+
+    .skills-scale-wrapper {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        transform: none;
+        padding: 0 var(--container-pad);
+    }
+
+    .skills-title {
+        font-size: 64px;
+        margin-bottom: 24px;
+    }
+
+    .marquee-container {
+        gap: 24px;
+        padding: 20px 0;
+    }
+
+    .marquee-track,
+    .marquee-track-reverse {
+        gap: 16px;
+        animation-duration: 30s;
+    }
+
+    .skill-box {
+        width: 110px;
+        height: 110px;
+        border-radius: 18px;
+    }
+
+    .skills-bg-elements {
+        display: none;
+    }
+}
+
+@media (max-width: 390px) {
+    .skills-title {
+        font-size: 48px;
+    }
+
+    .skill-box {
+        width: 90px;
+        height: 90px;
+    }
+}

@@ -1,0 +1,25 @@
+.mypage-container {max-width: 480px; margin:24px auto;padding: 24px; background-color: #f9f9f9; border-radius: 12px; box-sizing: 0 4px 16px rgba(0,0,0,0.05); box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start;min-height: auto; }
+.mypage-title {font-size: 24px; font-weight: 700; color:#5e0089;margin-bottom: 24px;}
+.mypage-card {background: #fff; padding:20px; border-radius: 10px;
+ box-shadow: 0 4px 12px rgba(0,0,0,0.05);font-size: 16px; color:#333;}
+.mypage-card p {margin: 8px 0;}
+.mypage-card p strong { margin-right: 5px;}
+
+
+.mypage-detail {max-width: 480px; margin: 24px auto 16px auto; padding:24px; background-color: #f9f9f9; border-radius: 12px; box-sizing: 0 4px 16px rgba(0,0,0,0.05); }
+.mypage-detail .mypage-actions {display: flex; justify-content: space-between; 
+    width: 75%; margin:0 auto 20px;}
+
+.mypage-detail .mypage-actions a {text-decoration: none; color:inherit;
+    padding: 5px 12px; border:1px solid #6b21a8; display: block; border-radius: 8px; 
+    color: #6b21a8;}
+.mypage-detail .mypage-actions a:hover {color:#fff; background-color:#5e0089; 
+transition: all 0.3s;}
+
+@media screen and (max-width:480px) {
+   .mypage-container {padding:16px; margin:16px auto 8px auto;} 
+   .mypage-title {font-size: 20px;}
+   .mypage-card {font-size: 14px;}
+   .mypage-actions {display: flex; flex-direction: column; flex-wrap: wrap; width: 100%; }
+   .mypage-actions a {margin-bottom: 10px; text-align: center;}
+}

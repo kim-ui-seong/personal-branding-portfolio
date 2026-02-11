@@ -1,0 +1,440 @@
+.connect-section {
+    position: relative;
+    width: 100%;
+    /* Extra scroll for high-resolution 3-phase journey */
+    height: 16000px;
+    overflow: visible;
+    z-index: 6;
+    background-color: #F4CED3;
+}
+
+.connect-sticky-container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: visible;
+    background-color: #F4CED3;
+    z-index: 6;
+}
+
+
+.connect-scale-wrapper {
+    position: absolute;
+    left: 50%;
+    width: 1920px;
+    height: 2780px;
+    transform-origin: top center;
+    z-index: 2;
+}
+
+/* 1. Background Layers */
+.pixel-bg-pink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1085px;
+    background-color: #F4CED3;
+    z-index: 0;
+}
+
+.pixel-bg-blue {
+    position: absolute;
+    top: 1090px;
+    left: 0;
+    width: 1920px;
+    height: 1690px;
+    background-color: #AFD8FB;
+    z-index: 0;
+}
+
+/* 2. Visual Structure */
+.pixel-visual-mass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.pixel-bowl {
+    position: absolute;
+    left: 0;
+    top: 1090px;
+    width: 1920px;
+    height: 1070px;
+    background-color: #FCFCF7;
+    border-radius: 0 0 1000px 1000px;
+    z-index: 2;
+}
+
+.pixel-ball {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.ball-1 {
+    left: -174px;
+    top: 437px;
+    width: 745px;
+    height: 745px;
+    background-color: #FCFCF7;
+}
+
+.ball-2 {
+    left: 380px;
+    top: 615px;
+    width: 745px;
+    height: 745px;
+    background-color: #F9F9F2;
+}
+
+.ball-3 {
+    left: 937px;
+    top: 400px;
+    width: 800px;
+    height: 800px;
+    background-color: #FCFCF7;
+}
+
+.ball-4 {
+    left: 1416px;
+    top: 542px;
+    width: 650px;
+    height: 650px;
+    background-color: #F9F9F2;
+}
+
+/* 3. Content Area */
+.pixel-content-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 4;
+}
+
+.stage-labels {
+    position: absolute;
+    top: 960px;
+    width: 100%;
+    text-align: center;
+}
+
+.school-days-text {
+    font-family: var(--font-title);
+    font-size: 48px;
+    color: #E33529;
+}
+
+.pixel-timeline-bar {
+    position: absolute;
+    left: 180PX;
+    top: 1085px;
+    --point-gap: 450px;
+    width: 1540px;
+    height: 180px;
+}
+
+.bar-red-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #E33529;
+}
+
+.bar-points-track {
+    position: relative;
+    display: flex;
+    gap: var(--point-gap, 450px);
+    padding-top: 25px;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bar-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 0;
+    opacity: 0.15;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.bar-point.is-active {
+    opacity: 1;
+    transform: scale(1.25);
+}
+
+.bar-point.is-final .dot {
+    animation: final-pulse 1.2s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(227, 53, 41, 0.55);
+}
+
+.bar-point.is-final .label {
+    animation: final-rise 0.7s ease-out;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    background-color: #E33529;
+    border-radius: 50%;
+    margin-bottom: 25px;
+}
+
+.l-id {
+    font-family: var(--font-title);
+    font-size: 18px;
+    margin-right: 5px;
+    font-weight: bold;
+    color: #E33529;
+    white-space: nowrap;
+}
+
+.l-txt {
+    font-family: var(--font-title);
+    font-size: 18px;
+    color: #E33529;
+    white-space: nowrap;
+}
+
+.stage-quote {
+    position: absolute;
+    top: 1350px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.quote-en {
+    font-family: var(--font-title);
+    font-size: 82px;
+    line-height: 1.1;
+    color: #E33529;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    white-space: pre-wrap;
+}
+
+.quote-kr {
+    font-family: var(--font-main);
+    font-size: 24px;
+    line-height: 1.6;
+    color: #E33529;
+    opacity: 0.95;
+    max-width: 1100px;
+}
+
+@keyframes final-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.35);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes final-rise {
+    0% {
+        transform: translateY(6px);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .connect-section {
+        height: auto;
+        padding: 90px 0 160px;
+        background-color: #F4CED3;
+        position: relative;
+        z-index: 2;
+    }
+
+    .connect-sticky-container {
+        position: relative;
+        height: auto;
+        overflow: visible;
+        padding: 0 var(--container-pad);
+    }
+
+    .connect-scale-wrapper {
+        position: relative !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto;
+        transform: none !important;
+        top: auto !important;
+    }
+
+    .pixel-bg-pink,
+    .pixel-bg-blue,
+    .pixel-visual-mass,
+    .pixel-bowl,
+    .pixel-ball {
+        display: none;
+    }
+
+    .pixel-visual-mass {
+        position: relative;
+    }
+
+    .pixel-bowl {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        border-radius: 0 0 300px 300px;
+    }
+
+    .pixel-ball {
+        display: none;
+    }
+
+    .pixel-content-area {
+        position: relative;
+        gap: 18px;
+        padding: 0 0 10px;
+        max-width: 560px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .stage-labels {
+        position: relative;
+        top: auto;
+        margin-bottom: 12px;
+    }
+
+    .school-days-text {
+        font-size: 28px;
+    }
+
+    .pixel-timeline-bar {
+        display: block;
+        margin: 16px auto 24px;
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100vw;
+        max-width: 100vw;
+        padding: 0 12px 6px;
+        --point-gap: 110px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+        pointer-events: auto;
+        overscroll-behavior-x: contain;
+    }
+
+    .pixel-timeline-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .bar-points-track {
+        justify-content: flex-start;
+        gap: 24px;
+        transform: translateX(0) !important;
+        flex-wrap: nowrap;
+        width: max-content;
+        min-width: 1200px !important;
+        pointer-events: auto;
+    }
+
+    .bar-point {
+        flex: 0 0 auto;
+    }
+
+    .bar-red-line {
+        display: block;
+    }
+
+    .bar-point {
+        width: auto;
+        opacity: 1;
+        transform: none;
+        min-width: 72px;
+        scroll-snap-align: center;
+    }
+
+    .bar-points-track::after {
+        content: "";
+        display: block;
+        width: 160px;
+        height: 1px;
+        flex: 0 0 auto;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        margin-bottom: 10px;
+    }
+
+    .l-id,
+    .l-txt {
+        font-size: 14px;
+    }
+
+    .stage-quote {
+        position: relative;
+        top: auto;
+        width: 100%;
+        padding: 0 12px;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    .quote-en {
+        font-size: 30px;
+    }
+
+    .quote-kr {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 390px) {
+    .school-days-text {
+        font-size: 22px;
+    }
+
+    .quote-en {
+        font-size: 28px;
+    }
+
+    .quote-kr {
+        font-size: 14px;
+    }
+
+    .pixel-timeline-bar {
+        --point-gap: 90px;
+    }
+
+    .pixel-content-area {
+        max-width: 340px;
+    }
+}

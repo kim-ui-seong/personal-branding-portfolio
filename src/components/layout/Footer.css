@@ -1,0 +1,283 @@
+.footer {
+    background-color: #F3F3E9;
+    padding: 150px 0 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-frame {
+    width: 1920px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-card {
+    width: 1700px;
+    height: 700px;
+    background: #CF4437;
+    border-radius: 28px;
+    padding: 80px 70px 70px;
+    color: #fff;
+    font-family: 'Bebas Neue', var(--font-title);
+    position: relative;
+}
+
+.footer-title {
+    font-size: 90px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    line-height: 1.05;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-title-line {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 0;
+    animation: footer-type-line1 10s steps(28, end) infinite;
+}
+
+.footer-title-line.is-2 {
+    animation: footer-type-line2 10s steps(28, end) infinite;
+}
+
+.footer-divider {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.65);
+    margin-bottom: 40px;
+}
+
+.footer-body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 260px;
+    position: relative;
+}
+
+.footer-contacts {
+    position: absolute;
+    left: 520px;
+    top: 40px;
+}
+
+.footer-contacts p {
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+.handwritten {
+    font-family: 'Preahvihear', cursive;
+    letter-spacing: 0.5px;
+}
+.handwritten .tell {font-size: 60px;}
+
+.footer-character {
+    position: absolute;
+    left: 40px;
+    bottom: -110px;
+    width: 340px;
+    height: 220px;
+}
+
+.footer-character img {
+    width: 340px;
+    height: auto;
+}
+
+.footer-character .character-open,
+.footer-character .character-closed {
+    position: absolute;
+    left: 0;
+    bottom: -92px;
+}
+
+.footer-character .character-closed {
+    opacity: 0;
+    animation: footer-blink 4.2s ease-in-out infinite;
+}
+
+@keyframes footer-type-line1 {
+    0%,
+    10% {
+        max-width: 0;
+    }
+    35% {
+        max-width: 100%;
+    }
+    70% {
+        max-width: 100%;
+    }
+    100% {
+        max-width: 0;
+    }
+}
+
+@keyframes footer-type-line2 {
+    0%,
+    25% {
+        max-width: 0;
+    }
+    50% {
+        max-width: 100%;
+    }
+    70% {
+        max-width: 100%;
+    }
+    100% {
+        max-width: 0;
+    }
+}
+
+@keyframes footer-blink {
+    0%,
+    80%,
+    100% {
+        opacity: 0;
+    }
+    82%,
+    84%,
+    90%,
+    92% {
+        opacity: 1;
+    }
+}
+
+
+.footer-bottom {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.footer-copy {
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.85;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.footer-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.footer-icon:hover {
+    transform: scale(1.08);
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 100px 0 80px;
+    }
+
+    .footer-frame {
+        width: 100%;
+        padding: 0 var(--container-pad);
+    }
+
+    .footer-card {
+        width: 100%;
+        height: auto;
+        padding: 40px 24px 32px;
+        border-radius: 20px;
+    }
+
+    .footer-title {
+        font-size: 56px;
+        margin-bottom: 20px;
+    }
+
+    .footer-divider {
+        margin-bottom: 24px;
+    }
+
+    .footer-body {
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .footer-contacts {
+        position: relative;
+        left: auto;
+        top: auto;
+    }
+
+    .footer-contacts p {
+        font-size: 20px;
+    }
+
+    .handwritten .tell {
+        font-size: 36px;
+    }
+
+    .footer-character {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 180px;
+        height: auto;
+        margin-top: 12px;
+        align-self: flex-end;
+    }
+
+    .footer-character img {
+        width: 180px;
+    }
+
+    .footer-bottom {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .footer-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .footer-icon img {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (max-width: 390px) {
+    .footer-title {
+        font-size: 44px;
+    }
+
+    .footer-contacts p {
+        font-size: 18px;
+    }
+
+    .handwritten .tell {
+        font-size: 30px;
+    }
+}
