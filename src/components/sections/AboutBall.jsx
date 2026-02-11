@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './AboutBall.css';
-import ballGirl2 from '../../assets/ball-girl-2.png';
 import ballGirl from '../../assets/ball-girl.png';
 
 const AboutBall = () => {
@@ -80,20 +79,18 @@ const AboutBall = () => {
     }, []);
 
     // Spread balls vertically across the deep frame
+    // Reduced number of balls and spread them out for better balance
     const balls = [
         { size: 700, left: '2%', top: '5%', speed: '14s', range: '180px', opacity: 0.45, anim: '1' },
-        { size: 550, right: '5%', top: '25%', speed: '16s', range: '220px', opacity: 0.55, anim: '2' },
-        { size: 470, left: '18%', top: '12%', speed: '15s', range: '160px', opacity: 0.5, anim: '3' },
-        { size: 235, right: '18%', top: '18%', speed: '17s', range: '140px', opacity: 0.48, anim: '1' },
-        { size: 900, left: '10%', top: '48%', speed: '20s', range: '280px', opacity: 0.65, anim: '3', zIndex: 6 },
-        { size: 820, right: '-5%', top: '72%', speed: '15s', range: '240px', opacity: 0.7, anim: '1', zIndex: 8 },
-        { size: 600, left: '16%', top: '58%', speed: '18s', range: '200px', opacity: 0.58, anim: '2', zIndex: 7 },
+        { size: 550, right: '5%', top: '20%', speed: '16s', range: '220px', opacity: 0.55, anim: '2' },
+        { size: 900, left: '8%', top: '45%', speed: '20s', range: '280px', opacity: 0.65, anim: '3', zIndex: 6 },
+        { size: 600, right: '12%', top: '65%', speed: '18s', range: '200px', opacity: 0.58, anim: '2', zIndex: 7 }, // Ball with Girl
         { size: 440, right: '70%', top: '1000%', pinnedTop: '1000px', pinnedLeft: '500px', speed: '16s', range: '100px', opacity: 0.6, anim: '3' },
         { size: 210, right: '60%', top: '1500%', pinnedTop: '980px', pinnedLeft: '520px', speed: '18s', range: '140px', opacity: 0.55, anim: '2' },
     ];
 
     // VERTICAL SLIDING LOGIC (Full Height Explorer)
-    const frameHeight = 4500; // Keep in sync with the scale wrapper for clean bottom framing
+    const frameHeight = 3500; // Increased to 3500px for breathing room
     const currentScale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--aboutball-scale')) || 1;
     const scaledFrameHeight = frameHeight * currentScale;
 
@@ -135,8 +132,8 @@ const AboutBall = () => {
                                         '--float-range': ball.range
                                     }}
                                 >
-                                    {idx === 1 && <img src={ballGirl2} className="ball-girl-img" alt="Ball Girl 2" style={{ top: '-55%' }} />}
-                                    {idx === 6 && <img src={ballGirl} className="ball-girl-img" alt="Ball Girl" style={{ transform: 'translate(-50%, 0) scaleX(-1)', zIndex: -1 }} />}
+                                    {/* Restored ballGirl (user calls it "ball girl 2") */}
+                                    {idx === 3 && <img src={ballGirl} className="ball-girl-img" alt="Ball Girl" style={{ transform: 'translate(-50%, 0) scaleX(1)', zIndex: -1 }} />}
                                 </div>
                             );
                         })}

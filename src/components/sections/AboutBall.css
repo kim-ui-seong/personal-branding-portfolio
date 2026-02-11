@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     /* Long scroll area for deep vertical exploration */
-    height: 5700px;
+    height: 4300px;
     background-color: #F4CED3;
     overflow: visible;
     z-index: 4;
@@ -24,7 +24,7 @@
     position: absolute;
     left: 50%;
     width: 1920px;
-    height: 4500px;
+    height: 3500px;
     transform-origin: top center;
 }
 
