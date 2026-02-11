@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './AboutBall.css';
-import ballGirl from '../../assets/ball-girl.png';
+import ballGirl2 from '../../assets/ball-girl-2.png';
 
 const AboutBall = () => {
     const sectionRef = useRef(null);
@@ -84,9 +84,9 @@ const AboutBall = () => {
         { size: 550, right: '5%', top: '25%', speed: '16s', range: '220px', opacity: 0.55, anim: '2' },
         { size: 470, left: '18%', top: '12%', speed: '15s', range: '160px', opacity: 0.5, anim: '3' },
         { size: 235, right: '18%', top: '18%', speed: '17s', range: '140px', opacity: 0.48, anim: '1' },
-        { size: 900, left: '10%', top: '48%', speed: '20s', range: '280px', opacity: 0.65, anim: '3' },
-        { size: 820, right: '-5%', top: '72%', speed: '15s', range: '240px', opacity: 0.7, anim: '1' },
-        { size: 600, left: '16%', top: '58%', speed: '18s', range: '200px', opacity: 0.58, anim: '2' },
+        { size: 900, left: '10%', top: '48%', speed: '20s', range: '280px', opacity: 0.65, anim: '3', zIndex: 6 },
+        { size: 820, right: '-5%', top: '72%', speed: '15s', range: '240px', opacity: 0.7, anim: '1', zIndex: 8 },
+        { size: 600, left: '16%', top: '58%', speed: '18s', range: '200px', opacity: 0.58, anim: '2', zIndex: 7 },
         { size: 440, right: '70%', top: '1000%', pinnedTop: '1000px', pinnedLeft: '500px', speed: '16s', range: '100px', opacity: 0.6, anim: '3' },
         { size: 210, right: '60%', top: '1500%', pinnedTop: '980px', pinnedLeft: '520px', speed: '18s', range: '140px', opacity: 0.55, anim: '2' },
     ];
@@ -129,11 +129,12 @@ const AboutBall = () => {
                                         right: ball.pinnedLeft ? undefined : ball.right,
                                         top: ball.top,
                                         opacity: ball.opacity,
+                                        zIndex: ball.zIndex,
                                         animationDuration: ball.speed,
                                         '--float-range': ball.range
                                     }}
                                 >
-                                    {idx === 6 && <img src={ballGirl} className="ball-girl-img" alt="Ball Girl" />}
+                                    {idx === 5 && <img src={ballGirl2} className="ball-girl-img" alt="Ball Girl" />}
                                 </div>
                             );
                         })}
@@ -159,6 +160,7 @@ const AboutBall = () => {
                                         right: ball.right,
                                         top: ball.pinnedTop || ball.top,
                                         opacity: ball.opacity,
+                                        zIndex: ball.zIndex,
                                         animationDuration: ball.speed,
                                         '--float-range': ball.range
                                     }}
