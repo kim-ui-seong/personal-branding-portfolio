@@ -63,6 +63,59 @@
     pointer-events: none;
 }
 
+/* Hover Background Images */
+/* Hover Background Images */
+.connect-hover-bg {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    z-index: 3;
+    pointer-events: none;
+    /* Removed fixed size, overflow, shadow from container */
+}
+
+.c-hover-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+    /* Center relative to container */
+    max-width: 600px;
+    /* Constrain size but keep ratio */
+    max-height: 450px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.6s ease-out;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(74, 137, 195, 0.25);
+    /* Shadow on image only */
+}
+
+.c-hover-img.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 1;
+}
+
+/* Specific positioning for the last image (07) */
+.c-hover-img.is-right {
+    left: auto;
+    right: 18%;
+    /* Adjust to move it to the right side */
+    transform: translateY(-50%) scale(1.1);
+    /* Initial state override */
+}
+
+.c-hover-img.is-right.is-visible {
+    transform: translateY(-50%) scale(1);
+    /* Active state override */
+}
+
 .pixel-bowl {
     position: absolute;
     left: 0;
@@ -171,6 +224,8 @@
     width: 0;
     opacity: 0.15;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+    /* Add pointer cursor */
 }
 
 .bar-point.is-active {
@@ -244,9 +299,11 @@
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.35);
     }
+
     100% {
         transform: scale(1);
     }
@@ -257,6 +314,7 @@
         transform: translateY(6px);
         opacity: 0.6;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;

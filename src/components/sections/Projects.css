@@ -177,52 +177,9 @@
     /* Match thumbnail top line */
 }
 
-.project-metrics {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 
-.metric-row {
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    align-items: center;
-    gap: 14px;
-}
 
-.metric-label {
-    font-family: 'Pretendard', var(--font-title);
-    font-size: 14px;
-    color: #4A89C3;
-    opacity: 0.85;
-}
 
-.metric-bar {
-    position: relative;
-    height: 10px;
-    max-width: 290px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-.metric-fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: var(--metric-value, 0%);
-    background: #4A89C3;
-    border-radius: 999px;
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.project-card-item.is-visible .metric-fill {
-    transform: scaleX(1);
-}
 
 .project-cta-group {
     margin-top: 40px;
@@ -254,22 +211,115 @@
     width: 100%;
 }
 
+/* New Project Card Styling */
+.p-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(74, 137, 195, 0.3);
+    padding-bottom: 15px;
+}
+
+.p-category {
+    font-family: var(--font-title);
+    font-size: 16px;
+    color: #4A89C3;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.p-duration {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 15px;
+    color: #4A89C3;
+    opacity: 0.8;
+}
+
 .p-title {
     font-family: var(--font-title);
-    font-size: 82px;
+    font-size: 64px;
     color: #4A89C3;
     line-height: 1.1;
+    margin-bottom: 40px;
+}
+
+.p-section {
     margin-bottom: 30px;
 }
 
-.p-tags {
-    font-family: var(--font-title);
-    font-size: 22px;
+.p-label {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 18px;
     color: #4A89C3;
-    opacity: 0.8;
-    line-height: 1.6;
-    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
 }
+
+.p-desc-text {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 16px;
+    color: #333;
+    /* Darker for readability */
+    line-height: 1.6;
+    word-break: keep-all;
+    white-space: pre-wrap;
+    opacity: 0.9;
+}
+
+/* Metrics (Animated Bars) */
+.project-metrics {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.metric-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: 14px;
+}
+
+.metric-label {
+    font-family: 'Pretendard', var(--font-title);
+    font-size: 14px;
+    color: #4A89C3;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+.metric-bar {
+    position: relative;
+    height: 8px;
+    max-width: 280px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.metric-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--metric-value, 0%);
+    background: #4A89C3;
+    border-radius: 999px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.project-card-item.is-visible .metric-fill {
+    transform: scaleX(1);
+}
+
+/* Removed mini metrics styles */
+
+/* Removed old p-tags and project-metrics styles to avoid conflict, keeping basic project-cta-group */
 
 /* CLONE CODING LAYER */
 .clone-coding-layer {
@@ -570,7 +620,7 @@
         display: contents !important;
     }
 
-    .project-text-box > * {
+    .project-text-box>* {
         max-width: 320px;
         margin-left: auto;
         margin-right: auto;

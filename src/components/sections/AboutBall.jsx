@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './AboutBall.css';
 import ballGirl2 from '../../assets/ball-girl-2.png';
+import ballGirl from '../../assets/ball-girl.png';
 
 const AboutBall = () => {
     const sectionRef = useRef(null);
@@ -134,7 +135,8 @@ const AboutBall = () => {
                                         '--float-range': ball.range
                                     }}
                                 >
-                                    {idx === 5 && <img src={ballGirl2} className="ball-girl-img" alt="Ball Girl" />}
+                                    {idx === 1 && <img src={ballGirl2} className="ball-girl-img" alt="Ball Girl 2" style={{ top: '-55%' }} />}
+                                    {idx === 6 && <img src={ballGirl} className="ball-girl-img" alt="Ball Girl" style={{ transform: 'translate(-50%, 0) scaleX(-1)', zIndex: -1 }} />}
                                 </div>
                             );
                         })}
@@ -169,7 +171,7 @@ const AboutBall = () => {
                         })}
                     </div>
                 </div>
-            </section>
+            </section >
         </>
     );
 };

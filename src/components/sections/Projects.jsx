@@ -28,14 +28,13 @@ import main6 from '../../assets/clonecoding-main-concierge.png';
 import hover6 from '../../assets/clonecoding-hover-concierge.png';
 
 // Individual Card Component for repeatable scroll reveal
-const ProjectCard = ({ project, idx, ctaLinks }) => {
+const ProjectCard = ({ project, idx }) => {
     const cardRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // Toggle visibility based on viewport
                 setIsVisible(entry.isIntersecting);
             },
             { threshold: 0.2 }
@@ -44,43 +43,61 @@ const ProjectCard = ({ project, idx, ctaLinks }) => {
         return () => observer.disconnect();
     }, []);
 
-    const getCtaLabel = (cta) => (typeof cta === 'string' ? cta : cta.label);
-    const getCtaHref = (cta, ctaIdx) => {
-        if (typeof cta === 'object' && cta && cta.href) return cta.href;
-        return ctaLinks?.[ctaIdx] || '#';
-    };
-
     return (
         <div
             ref={cardRef}
             className={`project-card-item ${idx % 2 === 1 ? 'is-reverse' : ''} ${isVisible ? 'is-visible' : ''}`}
         >
             <div className="project-text-box">
-                <h3 className="p-title">{project.title}</h3>
-                <p className="p-tags">{project.tags.split('\n').map((l, i) => <React.Fragment key={i}>{l}<br /></React.Fragment>)}</p>
-                <div className="project-metrics">
-                    {project.metrics.map((metric) => (
-                        <div key={metric.label} className="metric-row">
-                            <span className="metric-label">{metric.label}</span>
-                            <div className="metric-bar">
-                                <span
-                                    className="metric-fill"
-                                    style={{ '--metric-value': `${metric.value}%` }}
-                                ></span>
-                            </div>
-                        </div>
-                    ))}
+                {/* Category & Duration */}
+                <div className="p-header-row">
+                    <span className="p-category">{project.tags}</span>
+                    <span className="p-duration">{project.duration}</span>
                 </div>
+
+                {/* Title */}
+                <h3 className="p-title">{project.title}</h3>
+
+                {/* Description (Intro) */}
+                <div className="p-section p-intro">
+                    <h4 className="p-label">소개</h4>
+                    <p className="p-desc-text">{project.description}</p>
+                </div>
+
+                {/* Takeaway */}
+                <div className="p-section p-takeaway">
+                    <h4 className="p-label">느낀 점 및 배운 점</h4>
+                    <p className="p-desc-text">{project.takeaway}</p>
+                </div>
+
+                {/* Contribution */}
+                <div className="p-section p-contribution">
+                    <div className="project-metrics">
+                        {project.metrics.map((metric) => (
+                            <div key={metric.label} className="metric-row">
+                                <span className="metric-label">{metric.label}</span>
+                                <div className="metric-bar">
+                                    <span
+                                        className="metric-fill"
+                                        style={{ '--metric-value': `${metric.value}%` }}
+                                    ></span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Links */}
                 <div className="project-cta-group">
                     {project.ctas.map((cta, ctaIdx) => (
                         <a
-                            key={`${getCtaLabel(cta)}-${ctaIdx}`}
-                            href={getCtaHref(cta, ctaIdx)}
+                            key={ctaIdx}
+                            href={cta.href}
                             className="project-cta-btn"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            {getCtaLabel(cta)}
+                            {cta.label}
                         </a>
                     ))}
                 </div>
@@ -158,44 +175,61 @@ const Projects = () => {
         };
     }, []);
 
-    const projectCtaLinks = [
-        ['https://www.figma.com/proto/qynwlfwUAFyqPuzetAsTgD/%EB%AA%A8%EB%82%98%EB%AF%B8-%EA%B8%B0%ED%9A%8D%EC%84%9C?page-id=0%3A1&node-id=1-459&viewport=352%2C337%2C0.09&t=pgRcUtGoxl8dmwQ7-1&scaling=scale-down-width&content-scaling=fixed', 'https://meongpunch.github.io/monamifinal/'], //모나미
-        ['https://www.figma.com/proto/n3hqv2ylXq3DTAa4P5lmxZ/%EB%8D%95%EC%95%84%EC%9B%83-%EA%B8%B0%ED%9A%8D%EC%84%9C?page-id=0%3A1&node-id=1-376&viewport=100%2C83%2C0.25&t=90RI3YffneAxMiKQ-1&scaling=scale-down-width&content-scaling=fixed', 'https://dugout-ruby.vercel.app/'], //덕아웃
-        ['https://www.figma.com/proto/Spg9aQhesLnbynyPgXXFGu/4.%EA%B9%80%EC%9D%98%EC%84%B1?page-id=1015%3A122&node-id=1607-5238&viewport=5066%2C10315%2C0.46&t=wq65kE3dUcu6BMp8-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1015%3A4302', 'https://www.figma.com/proto/Spg9aQhesLnbynyPgXXFGu/4.%EA%B9%80%EC%9D%98%EC%84%B1?page-id=1015%3A122&node-id=1015-4302&viewport=1194%2C4276%2C0.17&t=BXfsBEjHdBvmkvjj-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1015%3A4302'] //클링
-    ];
+
 
     const projectsData = [
         {
             title: "MONAMI SITE RENEWAL",
-            tags: "MONAMI WEB SITE DESIGN PROJECT\n2025.11~2025.12",
+            description: "기존의 노후된 모나미 사이트를 현대적인 감각으로 재해석하여 리디자인했습니다. 사용자의 편의성을 고려한 UI와 브랜드 아이덴티티를 강화하는 UX를 목표로 했습니다.",
+            duration: "2025.11 ~ 2025.12",
+            takeaway: "웹 접근성을 고려한 컬러 조합과 타이포그래피의 중요성을 배웠습니다. 팀원들과의 협업을 통해 디자인 시스템을 구축하는 경험을 쌓았습니다.",
+            contribution: "디자인 78%, 퍼블리싱 52%, 기획 80%를 담당하여 프로젝트 전반을 주도했습니다.",
+            tags: "MONAMI WEB SITE DESIGN PROJECT",
             img: monamiImg,
             metrics: [
                 { label: '디자인', value: 78 },
                 { label: '코딩', value: 52 },
                 { label: '기획서', value: 80 }
             ],
-            ctas: ['기획서 바로가기', 'SITE 바로가기']
+            ctas: [
+                { label: '기획서 바로가기', href: 'https://www.figma.com/proto/qynwlfwUAFyqPuzetAsTgD/%EB%AA%A8%EB%82%98%EB%AF%B8-%EA%B8%B0%ED%9A%8D%EC%84%9C?page-id=0%3A1&node-id=1-459&viewport=352%2C337%2C0.09&t=pgRcUtGoxl8dmwQ7-1&scaling=scale-down-width&content-scaling=fixed' },
+                { label: 'SITE 바로가기', href: 'https://meongpunch.github.io/monamifinal/' }
+            ]
         },
         {
             title: "K-PANDOM APP 'DUGOUT'",
-            tags: "PANDOM SERVICE APP DESIGN PROJECT\n2025.01~2025.01",
+            description: "K-POP 팬덤을 위한 덕질 필수 앱 '덕아웃'을 기획하고 디자인했습니다. 팬들이 소통하고 굿즈를 거래할 수 있는 올인원 플랫폼을 지향합니다.",
+            duration: "2025.01 ~ 2025.01",
+            takeaway: "앱 서비스의 흐름을 설계하며 User Flow의 중요성을 이해했습니다. 프로토타이핑 툴을 활용하여 실제 앱과 유사한 인터랙션을 구현해보았습니다.",
+            contribution: "기획부터 디자인, 프로토타이핑까지 1인 프로젝트로 진행하며 앱 서비스 구축의 전 과정을 경험했습니다.",
+            tags: "PANDOM SERVICE APP DESIGN PROJECT",
             img: dugoutImg,
             metrics: [
                 { label: '디자인', value: 84 },
                 { label: '코딩', value: 60 },
                 { label: '기획서', value: 72 }
             ],
-            ctas: ['기획서 바로가기', 'APP 바로가기']
+            ctas: [
+                { label: '기획서 바로가기', href: 'https://www.figma.com/proto/n3hqv2ylXq3DTAa4P5lmxZ/%EB%8D%95%EC%95%84%EC%9B%83-%EA%B8%B0%ED%9A%8D%EC%84%9C?page-id=0%3A1&node-id=1-376&viewport=100%2C83%2C0.25&t=90RI3YffneAxMiKQ-1&scaling=scale-down-width&content-scaling=fixed' },
+                { label: 'APP 바로가기', href: 'https://dugout-ruby.vercel.app/' }
+            ]
         },
         {
             title: "RECYCLING APP UXUI",
-            tags: "PERSONAL PROJECT / RECYCLE GREEN PLAN\n2025.10~2025.11",
+            description: "환경 보호를 위한 재활용 습관 형성 앱 '클링'의 UX/UI 프로젝트입니다. 게이미피케이션 요소를 도입하여 사용자의 지속적인 참여를 유도했습니다.",
+            duration: "2025.10 ~ 2025.11",
+            takeaway: "사용자 조사를 통해 페르소나를 설정하고, 그에 맞는 서비스를 기획하는 과정을 익혔습니다. 친환경적인 이미지를 시각화하는 방법에 대해 고민했습니다.",
+            contribution: "UX 리서치와 UI 디자인을 전담하였으며, 그래픽 에셋 제작에도 크게 기여했습니다.",
+            tags: "PERSONAL PROJECT / RECYCLE GREEN PLAN",
             img: clingImg,
             metrics: [
                 { label: '디자인', value: 90 },
                 { label: '기획서', value: 90 }
             ],
-            ctas: ['기획서 바로가기', 'PROTOTYPE 바로가기']
+            ctas: [
+                { label: '기획서 바로가기', href: 'https://www.figma.com/proto/HZdZgV61BUvdMTdLtCk5zI/%ED%81%B4%EB%A7%81-%EA%B8%B0%ED%9A%8D%EC%84%9C?page-id=0%3A1&node-id=1-1873&viewport=525%2C9614%2C0.24&t=byqnwBBnkgjzQgAu-1&scaling=min-zoom&content-scaling=fixed' },
+                { label: 'PROTOTYPE 바로가기', href: 'https://www.figma.com/proto/Spg9aQhesLnbynyPgXXFGu/4.%EA%B9%80%EC%9D%98%EC%84%B1?page-id=1015%3A122&node-id=1015-4302&viewport=1194%2C4276%2C0.17&t=BXfsBEjHdBvmkvjj-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1015%3A4302' }
+            ]
         }
     ];
 
@@ -334,7 +368,6 @@ const Projects = () => {
                                     key={idx}
                                     project={project}
                                     idx={idx}
-                                    ctaLinks={projectCtaLinks[idx]}
                                 />
                             ))}
                         </div>
